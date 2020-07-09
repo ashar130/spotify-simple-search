@@ -1,0 +1,26 @@
+body,
+html {
+  height: 100%;
+}
+
+body {
+  background-color: #036d19;
+  background-image: url("spotify logo.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 40% 70%;
+}
+
+h1.display-1 {
+  color: #ffd300;
+  font-weight: thin;
+  font-size: 8rem;
+}
+
+.main {
+  margin-top: 13%;
+  margin-bottom: 15%;
+  margin-left: 10%;
+  margin-right: 10%;
+  position: absolute;
+}
