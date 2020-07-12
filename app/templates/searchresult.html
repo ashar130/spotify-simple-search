@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+
+    <title>spotify simple search</title>
+  </head>
+  <body>
+    {% if result %} {% set row_legth = 3 %} {% if search_type=='artist' %}
+    <h1>search result for {{query['artist']}}</h1>
+    {% for i in range(0, result|length, row_legth) %}
+    <div class="row text-center">
+      {% for item in result[i:i+row_legth] %}
+      <!-- <h1>{{item.name}}</h1> -->
+      <div class="card" style="width: 25rem;">
+        <img class="card-img-top" src={{item.image['url']}} width="398"
+        height="398" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">{{item.name}}</h5>
+          <!-- <p class="card-text">
+            Some quick example text to build on the card title and make up the
+            bulk of the card's content.
+          </p> -->
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Followers {{item.followers}}</li>
+          <li class="list-group-item">Genres {{', '.join(item.genres)}}</li>
+        </ul>
+        <div class="card-body">
+          <a href="{{item.weblink}}" class="card-link">Spotify link</a>
+        </div>
+      </div>
+
+      {% endfor %}
+    </div>
+    {% endfor %} {% elif search_type=='album' %}
+    <h1>search result for {{query['album']}}</h1>
+    {% for i in range(0, result|length, row_legth) %}
+    <div class="row text-center">
+      {% for item in result[i:i+row_legth] %}
+      <!-- <h1>{{item.name}}</h1> -->
+      <div class="card" style="width: 25rem;">
+        <img class="card-img-top" src={{item.image['url']}} width="398"
+        height="398" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">{{item.name}}</h5>
+          <!-- <p class="card-text">
+            Some quick example text to build on the card title and make up the
+            bulk of the card's content.
+          </p> -->
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Artist {{item.artist}}</li>
+          <li class="list-group-item">Release Date {{item.release_date}}</li>
+        </ul>
+        <div class="card-body">
+          <a href="{{item.weblink}}" class="card-link">Spotify link</a>
+        </div>
+      </div>
+
+      {% endfor %}
+    </div>
+    {% endfor %} {% else %}
+    <h1>search result for {{query['track']}}</h1>
+    {% for i in range(0, result|length, row_legth) %}
+    <div class="row text-center">
+      {% for item in result[i:i+row_legth] %}
+      <!-- <h1>{{item.name}}</h1> -->
+      <div class="card" style="width: 25rem;">
+        <img class="card-img-top" src={{item.image['url']}} width="398"
+        height="398" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">{{item.name}}</h5>
+          <!-- <p class="card-text">
+            Some quick example text to build on the card title and make up the
+            bulk of the card's content.
+          </p> -->
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Artist {{item.artist}}</li>
+          <li class="list-group-item">Album {{item.album}}</li>
+          <li class="list-group-item">Release Date {{item.release_date}}</li>
+        </ul>
+        <div class="card-body">
+          <a href="{{item.weblink}}" class="card-link">Spotify link</a>
+        </div>
+      </div>
+
+      {% endfor %}
+    </div>
+    {% endfor %} {% endif %} {% else %}
+    <h1>Sorry</h1>
+    {% endif %}
+
+    <!-- 
+    {% if result %} {% if search_type=='artist'%} {% for artist in result %}
+    <h6><a href="{{artist.weblink}}">{{artist.name}}</a></h6>
+    <img src={{artist.image['url']}} />
+    <p>
+      {{artist.followers}} {{artist.genres}}
+    </p>
+    {% endfor %} {% elif search_type=='album'%} {% for album in result %}
+    <h6><a href="{{album.weblink}}">{{album.name}}</a></h6>
+    <img src={{album.image['url']}} />
+    <p>
+      {{album.artist}} {{album.release_date}}
+    </p>
+    {% endfor %} {% else %} {% for track in result %}
+    <h6><a href="{{track.weblink}}">{{track.name}}</a></h6>
+    <img src={{track.image['url']}} />
+    <p>
+      {{track.artist}} {{track.album}} {{track.release_date}}
+    </p>
+    {% endfor %} {% endif %} {% else %}
+    <p>Sorry</p>
+    {% endif %} -->
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
