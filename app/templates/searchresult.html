@@ -16,93 +16,122 @@
       crossorigin="anonymous"
     />
 
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{url_for('static', filename='searchresult.css')}}"
+    />
+
     <title>spotify simple search</title>
   </head>
   <body>
+    <a href="{{url_for('home')}}">
+      <button
+        type="button"
+        class="btn btn-primary btn-lg my-2 mx-3"
+        style="float: right;"
+      >
+        new search
+      </button>
+    </a>
+
     {% if result %} {% set row_legth = 3 %} {% if search_type=='artist' %}
-    <h1>search result for {{query['artist']}}</h1>
-    {% for i in range(0, result|length, row_legth) %}
-    <div class="row text-center">
-      {% for item in result[i:i+row_legth] %}
-      <!-- <h1>{{item.name}}</h1> -->
-      <div class="card" style="width: 25rem;">
-        <img class="card-img-top" src={{item.image['url']}} width="398"
-        height="398" alt="Card image cap">
-        <div class="card-body">
-          <h5 class="card-title">{{item.name}}</h5>
-          <!-- <p class="card-text">
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
-          </p> -->
+    <h1 class="display-4">
+      search result for <span class="result">{{query['artist']}}</span>
+    </h1>
+    <div class="fluid-container">
+      {% for i in range(0, result|length, row_legth) %}
+      <div class="row text-center justify-content-center">
+        {% for item in result[i:i+row_legth] %}
+        <div class="card my-2 mx-3" style="width: 325px;">
+          <img class="card-img-top" src={{item.image['url']}} width="325"
+          height="325" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">{{item.name}}</h5>
+            <!-- <p class="card-text">
+              Some quick example text to build on the card title and make up the
+              bulk of the card's content.
+            </p> -->
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <i>followers: </i>
+              {{item.followers}}
+            </li>
+            <li class="list-group-item">
+              <i>genres: </i>{{', '.join(item.genres)}}
+            </li>
+          </ul>
+          <div class="card-body">
+            <a href="{{item.weblink}}" class="card-link">Spotify</a>
+          </div>
         </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">Followers {{item.followers}}</li>
-          <li class="list-group-item">Genres {{', '.join(item.genres)}}</li>
-        </ul>
-        <div class="card-body">
-          <a href="{{item.weblink}}" class="card-link">Spotify link</a>
-        </div>
+        {% endfor %}
       </div>
-
-      {% endfor %}
     </div>
+
     {% endfor %} {% elif search_type=='album' %}
-    <h1>search result for {{query['album']}}</h1>
-    {% for i in range(0, result|length, row_legth) %}
-    <div class="row text-center">
-      {% for item in result[i:i+row_legth] %}
-      <!-- <h1>{{item.name}}</h1> -->
-      <div class="card" style="width: 25rem;">
-        <img class="card-img-top" src={{item.image['url']}} width="398"
-        height="398" alt="Card image cap">
-        <div class="card-body">
-          <h5 class="card-title">{{item.name}}</h5>
-          <!-- <p class="card-text">
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
-          </p> -->
+    <h1 class="display-4">
+      search result for <span class="result">{{query['album']}}</span>
+    </h1>
+    <div class="container">
+      {% for i in range(0, result|length, row_legth) %}
+      <div class="row text-center justify-content-center">
+        {% for item in result[i:i+row_legth] %}
+        <div class="card my-3 mx-3" style="width: 325px;">
+          <img class="card-img-top" src={{item.image['url']}} width="325"
+          height="325" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">{{item.name}}</h5>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item"><i>artist: </i>{{item.artist}}</li>
+            <li class="list-group-item">
+              <i>release date: </i>{{item.release_date}}
+            </li>
+          </ul>
+          <div class="card-body">
+            <a href="{{item.weblink}}" class="card-link">Spotify</a>
+          </div>
         </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">Artist {{item.artist}}</li>
-          <li class="list-group-item">Release Date {{item.release_date}}</li>
-        </ul>
-        <div class="card-body">
-          <a href="{{item.weblink}}" class="card-link">Spotify link</a>
-        </div>
+        {% endfor %}
       </div>
-
-      {% endfor %}
     </div>
+
     {% endfor %} {% else %}
-    <h1>search result for {{query['track']}}</h1>
-    {% for i in range(0, result|length, row_legth) %}
-    <div class="row text-center">
-      {% for item in result[i:i+row_legth] %}
-      <!-- <h1>{{item.name}}</h1> -->
-      <div class="card" style="width: 25rem;">
-        <img class="card-img-top" src={{item.image['url']}} width="398"
-        height="398" alt="Card image cap">
-        <div class="card-body">
-          <h5 class="card-title">{{item.name}}</h5>
-          <!-- <p class="card-text">
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
-          </p> -->
+    <h1 class="display-4">
+      search result for <span class="result">{{query['track']}}</span>
+    </h1>
+    <div class="container">
+      {% for i in range(0, result|length, row_legth) %}
+      <div class="row text-center justify-content-center">
+        {% for item in result[i:i+row_legth] %}
+        <div class="card my-3 mx-3" style="width: 325px;">
+          <img class="card-img-top" src={{item.image['url']}} width="325"
+          height="325" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">{{item.name}}</h5>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item"><i>artist: </i>{{item.artist}}</li>
+            <li class="list-group-item"><i>album: </i>{{item.album}}</li>
+            <li class="list-group-item">
+              <i>release date: </i>{{item.release_date}}
+            </li>
+          </ul>
+          <div class="card-body">
+            <a href="{{item.weblink}}" class="card-link">Spotify</a>
+          </div>
         </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">Artist {{item.artist}}</li>
-          <li class="list-group-item">Album {{item.album}}</li>
-          <li class="list-group-item">Release Date {{item.release_date}}</li>
-        </ul>
-        <div class="card-body">
-          <a href="{{item.weblink}}" class="card-link">Spotify link</a>
-        </div>
+        {% endfor %}
       </div>
-
-      {% endfor %}
     </div>
+
     {% endfor %} {% endif %} {% else %}
-    <h1>Sorry</h1>
+
+    <div class="center">
+      <h1 class="display-2 text-white">sorry, no search result found</h1>
+    </div>
     {% endif %}
 
     <!-- 
