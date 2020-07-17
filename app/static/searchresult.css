@@ -40,3 +40,11 @@ i {
 h1.display-2 {
   font-weight: lighter;
 }
+
+.card {
+  transition: 0.5s ease;
+}
+
+.card:hover {
+  transform: scale(1.1);
+}

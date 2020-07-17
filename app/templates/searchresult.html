@@ -35,96 +35,87 @@
       </button>
     </a>
 
-    {% if result %} {% set row_legth = 3 %} {% if search_type=='artist' %}
+    {% if result %} {% set row_legth = 4 %} {% if search_type=='artist' %}
     <h1 class="display-4">
       search result for <span class="result">{{query['artist']}}</span>
     </h1>
-    <div class="fluid-container">
-      {% for i in range(0, result|length, row_legth) %}
-      <div class="row text-center justify-content-center">
-        {% for item in result[i:i+row_legth] %}
-        <div class="card my-2 mx-3" style="width: 325px;">
-          <img class="card-img-top" src={{item.image['url']}} width="325"
-          height="325" alt="Card image cap">
-          <div class="card-body">
-            <h5 class="card-title">{{item.name}}</h5>
-            <!-- <p class="card-text">
-              Some quick example text to build on the card title and make up the
-              bulk of the card's content.
-            </p> -->
-          </div>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">
-              <i>followers: </i>
-              {{item.followers}}
-            </li>
-            <li class="list-group-item">
-              <i>genres: </i>{{', '.join(item.genres)}}
-            </li>
-          </ul>
-          <div class="card-body">
-            <a href="{{item.weblink}}" class="card-link">Spotify</a>
-          </div>
+    {% for i in range(0, result|length, row_legth) %}
+    <div class="row text-center justify-content-center">
+      {% for item in result[i:i+row_legth] %}
+      <div class="card my-4 mx-3" style="width: 320px;">
+        <img class="card-img-top" src={{item.image['url']}} width="320"
+        height="320" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">{{item.name}}</h5>
         </div>
-        {% endfor %}
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            <i>followers: </i>
+            {{item.followers}}
+          </li>
+          <li class="list-group-item">
+            <i>genres: </i>{{', '.join(item.genres)}}
+          </li>
+        </ul>
+        <div class="card-body">
+          <a href="{{item.weblink}}" class="card-link">Spotify</a>
+        </div>
       </div>
+      {% endfor %}
     </div>
 
     {% endfor %} {% elif search_type=='album' %}
     <h1 class="display-4">
       search result for <span class="result">{{query['album']}}</span>
     </h1>
-    <div class="container">
-      {% for i in range(0, result|length, row_legth) %}
-      <div class="row text-center justify-content-center">
-        {% for item in result[i:i+row_legth] %}
-        <div class="card my-3 mx-3" style="width: 325px;">
-          <img class="card-img-top" src={{item.image['url']}} width="325"
-          height="325" alt="Card image cap">
-          <div class="card-body">
-            <h5 class="card-title">{{item.name}}</h5>
-          </div>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item"><i>artist: </i>{{item.artist}}</li>
-            <li class="list-group-item">
-              <i>release date: </i>{{item.release_date}}
-            </li>
-          </ul>
-          <div class="card-body">
-            <a href="{{item.weblink}}" class="card-link">Spotify</a>
-          </div>
+    {% for i in range(0, result|length, row_legth) %}
+    <div class="row text-center justify-content-center">
+      {% for item in result[i:i+row_legth] %}
+      <div class="card my-3 mx-3" style="width: 320px;">
+        <img class="card-img-top" src={{item.image['url']}} width="320"
+        height="320" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">{{item.name}}</h5>
         </div>
-        {% endfor %}
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item"><i>artist: </i>{{item.artist}}</li>
+          <li class="list-group-item">
+            <i>release date: </i>{{item.release_date}}
+          </li>
+        </ul>
+        <div class="card-body">
+          <a href="{{item.weblink}}" class="card-link">Spotify</a>
+        </div>
       </div>
+      {% endfor %}
     </div>
 
     {% endfor %} {% else %}
     <h1 class="display-4">
       search result for <span class="result">{{query['track']}}</span>
     </h1>
-    <div class="container">
-      {% for i in range(0, result|length, row_legth) %}
-      <div class="row text-center justify-content-center">
-        {% for item in result[i:i+row_legth] %}
-        <div class="card my-3 mx-3" style="width: 325px;">
-          <img class="card-img-top" src={{item.image['url']}} width="325"
-          height="325" alt="Card image cap">
-          <div class="card-body">
-            <h5 class="card-title">{{item.name}}</h5>
-          </div>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item"><i>artist: </i>{{item.artist}}</li>
-            <li class="list-group-item"><i>album: </i>{{item.album}}</li>
-            <li class="list-group-item">
-              <i>release date: </i>{{item.release_date}}
-            </li>
-          </ul>
-          <div class="card-body">
-            <a href="{{item.weblink}}" class="card-link">Spotify</a>
-          </div>
+
+    {% for i in range(0, result|length, row_legth) %}
+    <div class="row text-center justify-content-center">
+      {% for item in result[i:i+row_legth] %}
+      <div class="card my-4 mx-3" style="width: 320px;">
+        <img class="card-img-top" src={{item.image['url']}} width="320"
+        height="320" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">{{item.name}}</h5>
         </div>
-        {% endfor %}
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item"><i>artist: </i>{{item.artist}}</li>
+          <li class="list-group-item"><i>album: </i>{{item.album}}</li>
+          <li class="list-group-item">
+            <i>release date: </i>{{item.release_date}}
+          </li>
+        </ul>
+        <div class="card-body">
+          <a href="{{item.weblink}}" class="card-link">Spotify</a>
+        </div>
       </div>
+      {% endfor %}
     </div>
 
     {% endfor %} {% endif %} {% else %}
