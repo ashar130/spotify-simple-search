@@ -35,7 +35,12 @@
       </button>
     </a>
 
-    {% if result %} {% set row_legth = 4 %} {% if search_type=='artist' %}
+    {% if alert %}
+    <div class="center">
+      <h1 class="display-2 text-white">please enter a search input</h1>
+    </div>
+    {% else %} {% if result %} {% set row_legth = 4 %} {% if
+    search_type=='artist' %}
     <h1 class="display-4">
       search result for <span class="result">{{query['artist']}}</span>
     </h1>
@@ -123,7 +128,7 @@
     <div class="center">
       <h1 class="display-2 text-white">sorry, no search result found</h1>
     </div>
-    {% endif %}
+    {% endif %} {% endif %}
 
     <!-- 
     {% if result %} {% if search_type=='artist'%} {% for artist in result %}

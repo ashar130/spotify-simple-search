@@ -21,10 +21,14 @@ def handle_search():
             if v == '':
                 query[k] = None
 
-        search_type = spotify.get_search_type(query)
-        result = spotify.search(query)
+        alert, result, search_type = False, False, False
+        if all(value == None for value in query.values()):
+            alert = True
+        else:
+            search_type = spotify.get_search_type(query)
+            result = spotify.search(query)
 
-        return render_template('searchresult.html', result=result, search_type=search_type, query=query)
+        return render_template('searchresult.html', result=result, search_type=search_type, query=query, alert=alert)
 
 
 if __name__ == '__main__':
